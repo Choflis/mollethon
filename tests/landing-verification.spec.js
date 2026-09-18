@@ -392,5 +392,43 @@ test.describe('Suite Completa de Verificación - Innovathon Mollendo 2026', () =
     expect(fs.existsSync(screenshotPath)).toBeTruthy();
   });
 
+  // 24. Castillo Forga 3D animado en el Hero section (entrada lateral, flotación y perspectiva 3D)
+  test('24. Castillo Forga 3D animado en el Hero section con entrada lateral y badges', async ({ page }, testInfo) => {
+    await page.goto('/');
+
+    const heroWrapper = page.locator('.hero-castillo-wrapper');
+    await expect(heroWrapper).toBeVisible();
+
+    // Imagen 3D del Castillo
+    const castleImg = page.locator('.castillo-3d-img');
+    await expect(castleImg).toBeVisible();
+
+    // Capa de entrada desde el costado
+    const entranceLayer = page.locator('.hero-castillo-entrance');
+    await expect(entranceLayer).toBeAttached();
+
+    // Haz de luz del faro
+    const beam = page.locator('.lighthouse-beam');
+    await expect(beam).toBeAttached();
+
+    // Badges flotantes de profundidad 3D
+    const chipLocation = page.locator('.chip-location');
+    const chipStatus = page.locator('.chip-status');
+    await expect(chipLocation).toContainText('Castillo Forga');
+    await expect(chipStatus).toContainText('Faro de Innovación');
+
+    // Interacción con mousemove en Desktop
+    if (testInfo.project.name === 'brave-desktop') {
+      const box = await heroWrapper.boundingBox();
+      if (box) {
+        await page.mouse.move(box.x + box.width * 0.2, box.y + box.height * 0.2);
+        await page.waitForTimeout(100);
+        await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.8);
+        await page.waitForTimeout(100);
+      }
+    }
+  });
+
 });
+
 
