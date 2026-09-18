@@ -9,6 +9,10 @@ mcp.json
 # Local agent & IDE configuration
 .agents/
 
+# Build output and scratch extracts
+dist/
+extracted_brandkit/
+
 # Test outputs and reports
 playwright-report/
 test-results/
