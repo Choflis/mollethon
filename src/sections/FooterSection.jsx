@@ -124,7 +124,7 @@ export default function FooterSection() {
           <div className="container footer-copyright-inner">
             <p>© 2026 Innovathon Mollendo. Todos los derechos reservados.</p>
             <p className="footer-credits">
-              Desarrollado con pasión para Mollendo por <a href="https://github.com/Choflis" target="_blank" rel="noopener noreferrer">Luis Gabriel (@Choflis)</a>.
+              Desarrollado con pasión para Mollendo por <a href="https://github.com/Choflis" target="_blank" rel="noopener noreferrer">Luis Guillermo (@Choflis)</a>.
             </p>
           </div>
         </div>

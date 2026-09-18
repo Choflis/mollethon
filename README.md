@@ -1,7 +1,7 @@
 # 🌊 Mollethon — Innovathon Mollendo 2026
 ### *“Las ideas también tienen marea.”*
 
-[![Playwright Tests](https://img.shields.io/badge/Playwright-40%20Passed-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
+[![Playwright Tests](https://img.shields.io/badge/Playwright-42%20Passed-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Brave Browser](https://img.shields.io/badge/Browser-Brave-FB542B?logo=brave&logoColor=white)](https://brave.com/)
 [![React](https://img.shields.io/badge/React-19.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -9,7 +9,15 @@
 
 Este repositorio contiene la **plataforma web interactiva oficial para la Mollethon (Innovathon Mollendo 2026)**: un festival y hackathon tecnológica de **48 horas de co-creación intensiva frente al mar** en la ciudad de Mollendo, Arequipa (Perú).
 
-El proyecto fue diseñado y desarrollado con una estética costera premium, integrando la identidad visual oficial del evento (`PROPUESTA BRANDKIT.pdf`), física marina en tiempo real e interacciones reactivas al cursor para transmitir la energía del océano, la creatividad juvenil y la innovación descentralizada.
+El proyecto fue diseñado y desarrollado con una estética costera premium, integrando la identidad visual oficial del evento (`PROPUESTA BRANDKIT.pdf`), física marina en tiempo real, el emblemático **Castillo Forga en 3D** en el Hero y el soporte completo para **Modo Claro y Modo Oscuro**.
+
+---
+
+## 📸 Vista Previa del Hero Section
+
+| Modo Oscuro (Deep Ocean Navy) | Modo Claro (Espuma Marina) |
+| :---: | :---: |
+| ![Hero Section Modo Oscuro](docs/images/hero-dark.png) | ![Hero Section Modo Claro](docs/images/hero-light.png) |
 
 ---
 
@@ -206,5 +214,5 @@ El formulario de inscripción está listo para conectarse a **Google Sheets**, *
 ## 👤 Autor & Organización
 
 - **Evento:** Innovathon Mollendo 2026 / Mollethon
-- **Desarrollo:** [Luis Gabriel (@Choflis)](https://github.com/Choflis)
+- **Desarrollo:** [Luis Guillermo (@Choflis)](https://github.com/Choflis)
 - **Repositorio Oficial:** [https://github.com/Choflis/mollethon](https://github.com/Choflis/mollethon)
