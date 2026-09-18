@@ -1,54 +1,85 @@
-# Innovathon Mollendo 2026 — Landing Page Oficial & Suite de Pruebas
+# 🌊 Mollethon — Innovathon Mollendo 2026
+### *“Las ideas también tienen marea.”*
 
 [![Playwright Tests](https://img.shields.io/badge/Playwright-34%20Passed-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Brave Browser](https://img.shields.io/badge/Browser-Brave-FB542B?logo=brave&logoColor=white)](https://brave.com/)
 [![React](https://img.shields.io/badge/React-19.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
-Landing page completa, moderna e interactiva para la **Innovathon Mollendo 2026** en Arequipa, desarrollada bajo los principios de diseño de **Emil Kowalski Design Engineering**, **Impeccable** y **Taste Skill**, con identidad visual oficial extraída del Brandkit (`PROPUESTA BRANDKIT.pdf`).
+Este repositorio contiene la **plataforma web interactiva oficial para la Mollethon (Innovathon Mollendo 2026)**: un festival y hackathon tecnológica de **48 horas de co-creación intensiva frente al mar** en la ciudad de Mollendo, Arequipa (Perú).
 
-> **Lema Oficial:** *“Las ideas también tienen marea.”*  
-> **Propósito:** *“Una Innovathon frente al mar para crear soluciones que transformen nuestro futuro.”*
-
----
-
-## 🎯 Características Principales
-
-1. **Identidad Costera & Brandkit Oficial**:
-   - Paleta marina oficial: Deep Ocean Navy (`#030c1f`), Aqua Marina (`#03c4c5`), Electric Violet (`#741cf3`), Solar Lime (`#b8da02`) y Sunset Coral (`#fc6c91`).
-   - Logotipo oficial `MOL·LEN·DO` en variantes clara y oscura extraídas del vector oficial.
-   - Los 5 iconos de marca oficiales: **Mar**, **Historia**, **Innovación**, **Colaboración** e **Impacto**.
-2. **Marea Oceánica Interactiva**:
-   - Canvas animado con capas multicapa de olas que se deforman y reaccionan a la posición del cursor en tiempo real.
-3. **Cursor Dinámico de Gota de Agua**:
-   - Puntero fluido con física de resorte (*Spring/Lerp*), halo acuático y transformación contextual al posarse sobre enlaces, botones y campos de texto.
-   - Se desactiva automáticamente en pantallas táctiles y bajo `prefers-reduced-motion`.
-4. **Tarjetas con Perspectiva 3D (TiltCard)**:
-   - Inclinación espacial suave y reflejo de luz que acompaña al mouse.
-5. **Formulario de Registro Completo & Accesible**:
-   - Validación en tiempo real (email con regex, celular de 9 dígitos, nombres y edad).
-   - Campos condicionales: despliega nombre de equipo y miembros al elegir modalidad *En Equipo*.
-   - Estados de carga (*loading spinner*) y tarjeta de confirmación (*success state*) con pulso de agua y código único de registro.
-6. **Cronograma y Datos 100% Desacoplados**:
-   - Todo el contenido editable está centralizado en archivos de datos en `src/data/`.
-7. **Suite de 34 Pruebas Automatizadas en Brave Browser**:
-   - Validación de accesibilidad, responsive en 1440px y 390px, menú móvil, acordeón FAQ, ausencia de scroll horizontal y capturas visuales completas.
+El proyecto fue diseñado y desarrollado con una estética costera premium, integrando la identidad visual oficial del evento (`PROPUESTA BRANDKIT.pdf`), física marina en tiempo real e interacciones reactivas al cursor para transmitir la energía del océano, la creatividad juvenil y la innovación descentralizada.
 
 ---
 
-## 📁 Estructura del Proyecto
+## 🧭 ¿De qué trata la Mollethon / Innovathon?
+
+La **Mollethon** es un movimiento que une la historia portuaria, el ecosistema marino y el talento del litoral arequipeño con la tecnología moderna:
+
+- **Propósito:** Conectar a estudiantes, desarrolladores, diseñadores, científicos marinos y emprendedores para crear prototipos reales ante desafíos de sostenibilidad, turismo inteligente, economía azul y desarrollo cívico.
+- **Formato:** 48 horas continuas de hackathon, masterclasses de especialistas, sesiones de mentoría 1:1, testing en vivo y Demo Day con pitch frente a un jurado de la industria.
+- **Sede:** Circuito costero del Malecón Ratti y Estación Cultural de Mollendo, Arequipa.
+- **Acceso:** 100% libre y gratuito para democratizar la tecnología en la región sur.
+
+---
+
+## ⚡ Experiencia Interactiva & Características de la Web
+
+La plataforma fue concebida para no sentirse como una plantilla estática corporativa ni un dashboard genérico, sino como una **experiencia marina viva**:
+
+1. **Simulador de Marea Oceánica en Tiempo Real ([OceanCanvas.jsx](src/components/OceanCanvas.jsx))**:
+   - Canvas multicapa en el Hero con oleajes generados matemáticamente que se elevan, deforman y reaccionan dinámicamente a la posición del cursor.
+2. **Puntero de Gota Marina con Física de Resorte ([CustomCursor.jsx](src/components/CustomCursor.jsx))**:
+   - Cursor fluido que acompaña al usuario con inercia elástica, halo translúcido y transformación de escala (`scale(1.5)`) al interactuar con botones, tarjetas e inputs. Se desactiva automáticamente en pantallas táctiles y con `prefers-reduced-motion`.
+3. **Tarjetas con Perspectiva 3D ([TiltCard.jsx](src/components/TiltCard.jsx))**:
+   - Inclinación tridimensional suave y reflejo de luz que sigue la posición del puntero.
+4. **Formulario de Inscripción Reactivo ([RegisterSection.jsx](src/sections/RegisterSection.jsx))**:
+   - Validación instantánea con mensajes accesibles (`aria-describedby`), comprobación de email y celular de 9 dígitos.
+   - **Campos condicionales:** Al seleccionar la modalidad *"En Equipo"*, despliega automáticamente el nombre del equipo y número de integrantes.
+   - **Estados de interacción:** Focus con halo de agua marina, feedback de carga (*loading spinner*) y tarjeta de confirmación (*success state*) con pulso acuático y código único de registro (`MOL-XXXXXX`).
+5. **Cronograma Dinámico por Días ([ScheduleSection.jsx](src/sections/ScheduleSection.jsx))**:
+   - Navegación por pestañas (Viernes 24, Sábado 25, Domingo 26) con horarios, temáticas, badges de tipo y responsables.
+6. **Línea de Tiempo de la Dinámica ([Timeline.jsx](src/components/Timeline.jsx))**:
+   - 7 etapas del evento conectadas por un track oceánico continuo.
+7. **Acordeón FAQ Accesible ([Accordion.jsx](src/components/Accordion.jsx))**:
+   - Preguntas frecuentes con soporte completo para teclado y atributos `aria-expanded`.
+8. **Pie de Página con Atardecer de Mollendo ([FooterSection.jsx](src/sections/FooterSection.jsx))**:
+   - Atmósfera inspirada en el atardecer costero, enlaces a redes sociales y llamado final a la acción.
+
+---
+
+## 🎨 Identidad Oficial del Brandkit
+
+La estética se sustenta estrictamente en la guía de marca oficial de la Innovathon:
+
+| Elemento | Especificación | Uso en la Web |
+| :--- | :--- | :--- |
+| **Deep Ocean Navy** | `#030c1f` | Fondo principal y profundidad marina |
+| **Marine Aqua / Cyan** | `#03c4c5` | Energía del mar, enlaces, cursor y acentos primarios |
+| **Electric Violet** | `#741cf3` | Innovación tecnológica y hackathon |
+| **Solar Lime** | `#b8da02` | Verano, juventud y botones de alta conversión |
+| **Sunset Coral** | `#fc6c91` | Atardecer de Mollendo y estados de alerta |
+| **Tipografía Display** | *Syne* / *Kief-Montaser* | Títulos principales de alto impacto |
+| **Tipografía UI/Body** | *Plus Jakarta Sans* | Lectura cómoda y formularios |
+| **Logotipo Oficial** | `MOL·LEN·DO` | Versiones clara y oscura extraídas del vector oficial |
+| **5 Iconos de Marca** | Mar, Historia, Innovación, Colaboración, Impacto | Tarjetas de presentación y pilares de marca |
+
+---
+
+## 📁 Estructura del Código
 
 ```text
 MOLLETHON/
 ├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx       # Barra sticky + drawer mobile accesible
-│   │   ├── OceanCanvas.jsx  # Simulación canvas de olas y marea reactiva
-│   │   ├── CustomCursor.jsx # Cursor de gota marina con física de resorte
+│   ├── components/          # Componentes de interacción y física
+│   │   ├── Navbar.jsx       # Header sticky + drawer mobile accesible
+│   │   ├── OceanCanvas.jsx  # Olas matemáticas reactivas al cursor
+│   │   ├── CustomCursor.jsx # Puntero de gota de agua con física Lerp/Spring
 │   │   ├── TiltCard.jsx     # Tarjeta con inclinación 3D y brillo reactivo
-│   │   ├── Timeline.jsx     # Dinámica del evento con línea de progreso
-│   │   └── Accordion.jsx    # FAQ animado y accesible (aria-expanded)
-│   ├── sections/
+│   │   ├── Timeline.jsx     # Dinámica de 7 fases con track oceánico
+│   │   └── Accordion.jsx    # Acordeón accesible con aria-expanded
+│   ├── sections/            # Secciones modulares de la landing page
 │   │   ├── HeroSection.jsx
 │   │   ├── AboutSection.jsx
 │   │   ├── ExperienceSection.jsx
@@ -58,130 +89,115 @@ MOLLETHON/
 │   │   ├── RegisterSection.jsx
 │   │   ├── FAQSection.jsx
 │   │   └── FooterSection.jsx
-│   ├── data/                # Archivos de configuración editables
-│   │   ├── eventData.js     # Datos maestros, manifiesto y lemas
+│   ├── data/                # Datos desacoplados y 100% editables
+│   │   ├── eventData.js     # Nombre, fechas, lema, lugar y pilares
 │   │   ├── scheduleData.js  # Cronograma interactivo por días y horas
-│   │   ├── mentorsData.js   # Mentores y aliados (con placeholders marcados)
+│   │   ├── mentorsData.js   # Mentores y aliados (con placeholders)
 │   │   └── faqData.js       # Preguntas frecuentes
 │   ├── lib/
-│   │   └── apiMock.js       # Simulación de registro y endpoint de integración
+│   │   └── apiMock.js       # Simulación de registro y endpoint webhook ready
 │   ├── styles/
-│   │   ├── tokens.css       # Tokens de color, tipografía y curvas de motion
-│   │   ├── animations.css   # Keyframes de olas, pulso de agua y transiciones
-│   │   └── main.css         # Reset, botones táctiles y layout general
+│   │   ├── tokens.css       # Variables CSS oficiales del Brandkit
+│   │   ├── animations.css   # Keyframes de olas y pulso de agua
+│   │   └── main.css         # Reset, botones táctiles y tipografía
 │   ├── App.jsx
 │   └── main.jsx
-├── public/
-│   └── assets/              # Logos oficiales, iconos del brandkit y fotos costeras
+├── public/assets/           # Logos, iconos oficiales de marca y fotografías
 ├── tests/
-│   ├── landing-verification.spec.js  # 20 pruebas E2E (Desktop + Mobile)
-│   └── screenshots/         # Capturas generadas automáticamente
-├── playwright.config.js     # Configuración con Brave Browser y servidor local
+│   ├── landing-verification.spec.js  # Suite de 20 especificaciones E2E
+│   └── screenshots/         # Capturas de auditoría visual en Desktop y Mobile
+├── playwright.config.js     # Configuración para Brave Browser Desktop/Mobile
 ├── package.json
 └── vite.config.js
 ```
 
 ---
 
-## 🚀 Inicio Rápido
+## 🚀 Cómo Iniciar el Proyecto
 
-1. **Instalar dependencias:**
-   ```bash
-   npm install
-   ```
+### Requisitos Previos
+- **Node.js**: v18.0.0 o superior
+- **Brave Browser** instalado (o configurable mediante la variable de entorno `BRAVE_PATH`)
 
-2. **Iniciar servidor de desarrollo:**
-   ```bash
-   npm run dev
-   ```
-   Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+### Pasos
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/Choflis/mollethon.git
+cd mollethon
 
-3. **Construir para producción:**
-   ```bash
-   npm run build
-   ```
+# 2. Instalar dependencias
+npm install
 
----
-
-## 🧪 Ejecución de Pruebas con Playwright y Brave
-
-| Comando | Acción |
-| :--- | :--- |
-| `npm test` | Ejecuta las 34 pruebas en Brave Desktop y Brave Mobile |
-| `npm run test:desktop` | Ejecuta las pruebas únicamente en vista Desktop (1440x900) |
-| `npm run test:mobile` | Ejecuta las pruebas en emulación móvil (Pixel 5) |
-| `npm run test:headed` | Ejecuta las pruebas mostrando la ventana de Brave en pantalla |
-| `npm run test:report` | Abre el reporte interactivo HTML de Playwright |
-
-Las capturas de pantalla completas se guardan automáticamente en:
-- `tests/screenshots/brave-desktop-fullpage.png`
-- `tests/screenshots/brave-mobile-fullpage.png`
-- `tests/screenshots/register-success.png`
-
----
-
-## ✏️ Guía de Personalización de Contenidos
-
-### 1. Cambiar Fecha, Ubicación o Textos Principales
-Edita el archivo [src/data/eventData.js](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/data/eventData.js):
-```javascript
-export const EVENT_DATA = {
-  date: "24 al 26 de Abril, 2026",
-  city: "Mollendo, Arequipa, Perú",
-  venue: "Malecón Ratti & Estación Cultural",
-  headline: "Las ideas también tienen marea.",
-  // ...
-};
+# 3. Iniciar el servidor local de desarrollo
+npm run dev
 ```
 
-### 2. Modificar el Cronograma de Actividades
-Edita el archivo [src/data/scheduleData.js](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/data/scheduleData.js) agregando o modificando días y actividades con hora, título, descripción y responsable.
+Abre en tu navegador: **[http://localhost:5173](http://localhost:5173)**
 
-### 3. Actualizar Mentores y Aliados Reales
-Edita el archivo [src/data/mentorsData.js](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/data/mentorsData.js). Actualmente cuenta con placeholders como `[Mentor/a por Confirmar]` listos para reemplazarse con los datos definitivos.
+---
 
-### 4. Preguntas Frecuentes
-Edita el archivo [src/data/faqData.js](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/data/faqData.js).
+## 🧪 Pruebas Automatizadas en Brave Browser
+
+El proyecto cuenta con una suite completa de **34 pruebas** en **Playwright** que validan el comportamiento en **Brave Desktop (1440x900)** y **Brave Mobile (Pixel 5)**:
+
+```bash
+# Ejecutar todas las pruebas en modo headless (Desktop + Mobile)
+npm test
+
+# Ejecutar solo la versión Desktop
+npm run test:desktop
+
+# Ejecutar solo la emulación móvil
+npm run test:mobile
+
+# Ejecutar con el navegador visible en pantalla
+npm run test:headed
+
+# Ver el reporte gráfico HTML interactivo
+npm run test:report
+```
+
+### Aspectos Verificados en las Pruebas:
+- Carga inicial y títulos SEO.
+- Navbar sticky y apertura/cierre accesible del menú móvil con tecla `Escape`.
+- Navegación por anclas hash hacia todas las secciones.
+- Validación de campos requeridos y formato de correo electrónico.
+- Activación dinámica del bloque condicional para equipos.
+- Envío simulado, estado de carga (*disabled + spinner*) y pantalla de éxito.
+- Acordeón FAQ accesible (`aria-expanded`).
+- Ausencia total de scroll horizontal en resoluciones móviles y de escritorio.
+- Feedback táctil en botones (`scale(0.97)`) e interacción 3D de tarjetas con cursor.
+- Comportamiento accesible bajo `prefers-reduced-motion: reduce`.
+- Capturas de pantalla completas guardadas en `tests/screenshots/`.
+
+---
+
+## ✏️ ¿Cómo Personalizar el Contenido?
+
+Todos los textos y datos están **desacoplados de la interfaz**, por lo que no necesitas modificar código HTML ni CSS para actualizarlos:
+
+1. **Fecha, Sede y Textos Maestros:** Edita [src/data/eventData.js](src/data/eventData.js).
+2. **Cronograma y Horarios:** Edita [src/data/scheduleData.js](src/data/scheduleData.js) para agregar o cambiar actividades de cada día.
+3. **Mentores y Aliados:** Edita [src/data/mentorsData.js](src/data/mentorsData.js) (actualmente con placeholders claramente identificados `[Por Confirmar]`).
+4. **Preguntas Frecuentes:** Edita [src/data/faqData.js](src/data/faqData.js).
 
 ---
 
 ## 🔌 Conexión del Formulario a un Backend Real
 
-El formulario utiliza el módulo desacoplado [src/lib/apiMock.js](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/lib/apiMock.js). Para conectarlo a un backend real (Google Sheets con Apps Script, Supabase o API REST):
+El formulario de inscripción está listo para conectarse a **Google Sheets**, **Supabase** o una **API REST**:
 
-1. Abre `src/lib/apiMock.js`.
-2. Asigna la URL de tu endpoint a `PRODUCTION_WEBHOOK_URL`:
+1. Abre el archivo [src/lib/apiMock.js](src/lib/apiMock.js).
+2. Agrega la URL de tu servicio en la constante `PRODUCTION_WEBHOOK_URL`:
    ```javascript
-   const PRODUCTION_WEBHOOK_URL = "https://script.google.com/macros/s/.../exec";
+   const PRODUCTION_WEBHOOK_URL = "https://script.google.com/macros/s/TU_SCRIPT_ID/exec";
    ```
-3. El formulario enviará automáticamente un POST con:
-   ```json
-   {
-     "fullName": "...",
-     "email": "...",
-     "phone": "...",
-     "city": "...",
-     "age": "...",
-     "occupation": "...",
-     "interestArea": "...",
-     "participationType": "...",
-     "teamName": "...",
-     "motivation": "...",
-     "registeredAt": "2026-09-18T..."
-   }
-   ```
+3. La aplicación enviará de manera transparente un payload JSON con todos los datos validados del participante sin exponer información sensible en consola.
 
 ---
 
-## 🎨 Branding y Animaciones
+## 👤 Autor & Organización
 
-- **Tokens de Color y Estilos:** [src/styles/tokens.css](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/styles/tokens.css)
-- **Animaciones y Curvas de Física:** [src/styles/animations.css](file:///c:/Users/luisg/OneDrive/Documentos/Universidad/MOLLETHON/src/styles/animations.css)
-- **Activos Oficiales de Marca:** Carpeta `public/assets/` con logotipos e iconos del Brandkit.
-- **Accesibilidad:** La aplicación detecta y respeta automáticamente la preferencia de sistema operativo `prefers-reduced-motion`, silenciando el cursor y las ondulaciones cuando el usuario lo solicite.
-
----
-
-## 👤 Autor
-
-Desarrollado para la **Innovathon Mollendo** por **Luis Gabriel ([@Choflis](https://github.com/Choflis))**.
+- **Evento:** Innovathon Mollendo 2026 / Mollethon
+- **Desarrollo:** [Luis Gabriel (@Choflis)](https://github.com/Choflis)
+- **Repositorio Oficial:** [https://github.com/Choflis/mollethon](https://github.com/Choflis/mollethon)
