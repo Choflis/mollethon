@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playwright Verification Test App</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #f8fafc;
+      --text: #0f172a;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+    }
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid #cbd5e1;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    button.btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    button.btn:hover {
+      background: var(--primary-hover);
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.5rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      background: #ecfdf5;
+      color: #065f46;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .responsive-indicator {
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      nav.desktop-nav {
+        display: none;
+      }
+      nav.desktop-nav.is-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        right: 1.5rem;
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+      }
+      nav.desktop-nav.is-open a {
+        margin: 0.5rem 0;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .responsive-indicator::after {
+        content: " (Modo Mobile Activo)";
+      }
+    }
+    @media (min-width: 769px) {
+      .responsive-indicator::after {
+        content: " (Modo Desktop Activo)";
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="brand-logo" style="font-weight: bold; font-size: 1.2rem;">Mollethon Prototype</div>
+    <nav class="desktop-nav" id="main-nav">
+      <a href="#home" class="nav-link active">Inicio</a>
+      <a href="#features" class="nav-link">Características</a>
+      <a href="#contact" class="nav-link">Contacto</a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Menu">☰ Menú</button>
+  </header>
+
+  <div class="container">
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <h2>Estado del Entorno</h2>
+      <p>Indicador de Viewport: <span id="viewport-indicator" class="responsive-indicator">Detectado</span></p>
+      <span class="status-badge" id="env-badge">Listo para Prototipado</span>
+    </div>
+
+    <div class="card-grid">
+      <!-- Card 1: Buttons and State -->
+      <div class="card" id="card-interaction">
+        <h3>1. Prueba de Interacción y Botón</h3>
+        <p>Contador actual: <span id="counter-value" style="font-weight: bold; font-size: 1.2rem;">0</span></p>
+        <button class="btn" id="btn-increment">Incrementar Contador</button>
+      </div>
+
+      <!-- Card 2: Forms -->
+      <div class="card" id="card-form">
+        <h3>2. Prueba de Formulario</h3>
+        <form id="test-form">
+          <div class="form-group">
+            <label for="input-name">Nombre:</label>
+            <input type="text" id="input-name" required placeholder="Ingresa tu nombre" />
+          </div>
+          <div class="form-group">
+            <label for="input-email">Correo Electrónico:</label>
+            <input type="email" id="input-email" required placeholder="correo@ejemplo.com" />
+          </div>
+          <button type="submit" class="btn" id="btn-submit">Enviar Formulario</button>
+        </form>
+        <div id="form-result" style="display: none; margin-top: 1rem; color: #16a34a; font-weight: 600;"></div>
+      </div>
+    </div>
+
+    <!-- Card 3: Navigation Target -->
+    <div class="card" id="features">
+      <h3>3. Sección de Navegación</h3>
+      <p id="nav-target-text">Navegación exitosa a la sección Características.</p>
+    </div>
+  </div>
+
+  <script>
+    let count = 0;
+    const btnIncrement = document.getElementById('btn-increment');
+    const counterValue = document.getElementById('counter-value');
+    btnIncrement.addEventListener('click', () => {
+      count++;
+      counterValue.textContent = count;
+    });
+
+    const form = document.getElementById('test-form');
+    const formResult = document.getElementById('form-result');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('input-name').value;
+      const email = document.getElementById('input-email').value;
+      formResult.textContent = `¡Recibido con éxito! Bienvenido, ${name} (${email})`;
+      formResult.style.display = 'block';
+    });
+
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mainNav = document.getElementById('main-nav');
+    mobileToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('is-open');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment and sensitive configurations
+.env
+.env*.local
+mcp.json
+
+# Local agent & IDE configuration
+.agents/
+
+# Test outputs and reports
+playwright-report/
+test-results/
+tests/screenshots/
