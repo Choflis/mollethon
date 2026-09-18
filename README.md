@@ -1,7 +1,7 @@
 # 🌊 Mollethon — Innovathon Mollendo 2026
 ### *“Las ideas también tienen marea.”*
 
-[![Playwright Tests](https://img.shields.io/badge/Playwright-34%20Passed-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
+[![Playwright Tests](https://img.shields.io/badge/Playwright-40%20Passed-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Brave Browser](https://img.shields.io/badge/Browser-Brave-FB542B?logo=brave&logoColor=white)](https://brave.com/)
 [![React](https://img.shields.io/badge/React-19.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -28,24 +28,31 @@ La **Mollethon** es un movimiento que une la historia portuaria, el ecosistema m
 
 La plataforma fue concebida para no sentirse como una plantilla estática corporativa ni un dashboard genérico, sino como una **experiencia marina viva**:
 
-1. **Simulador de Marea Oceánica en Tiempo Real ([OceanCanvas.jsx](src/components/OceanCanvas.jsx))**:
+1. **Selector de Modo Claro / Modo Oscuro ([tokens.css](src/styles/tokens.css) & [Navbar.jsx](src/components/Navbar.jsx))**:
+   - Soporte nativo para tema claro (`data-theme="light"`) con paleta costera diurna, contraste accesible WCAG AA y adaptación automática de olas en el canvas.
+   - **Switch dinámico de logotipo:** Emplea automáticamente `logo-dark.png` sobre fondos claros y `logo-light.png` en modo nocturno.
+2. **El Castillo Forga Dinámico ([CastilloSection.jsx](src/sections/CastilloSection.jsx))**:
+   - Espacio dedicado al ícono arquitectónico sobre los acantilados de Mollendo como faro de innovación.
+   - **Hotspots de baliza marina:** Puntos interactivos con ondas de pulso sobre el castillo (*Torreón del Faro Digital*, *Acantilado del Pacífico*, *Baluarte Histórico Forga*).
+   - **Telemetría Costera HUD:** Panel con mediciones de marea activa de Mollendo, temperatura del agua del Pacífico y fuerza del viento del sur.
+3. **Simulador de Marea Oceánica en Tiempo Real ([OceanCanvas.jsx](src/components/OceanCanvas.jsx))**:
    - Canvas multicapa en el Hero con oleajes generados matemáticamente que se elevan, deforman y reaccionan dinámicamente a la posición del cursor.
-2. **Puntero de Gota Marina con Física de Resorte ([CustomCursor.jsx](src/components/CustomCursor.jsx))**:
+4. **Puntero de Gota Marina con Física de Resorte ([CustomCursor.jsx](src/components/CustomCursor.jsx))**:
    - Cursor fluido que acompaña al usuario con inercia elástica, halo translúcido y transformación de escala (`scale(1.5)`) al interactuar con botones, tarjetas e inputs. Se desactiva automáticamente en pantallas táctiles y con `prefers-reduced-motion`.
-3. **Tarjetas con Perspectiva 3D ([TiltCard.jsx](src/components/TiltCard.jsx))**:
+5. **Tarjetas con Perspectiva 3D ([TiltCard.jsx](src/components/TiltCard.jsx))**:
    - Inclinación tridimensional suave y reflejo de luz que sigue la posición del puntero.
-4. **Formulario de Inscripción Reactivo ([RegisterSection.jsx](src/sections/RegisterSection.jsx))**:
+6. **Formulario de Inscripción Reactivo ([RegisterSection.jsx](src/sections/RegisterSection.jsx))**:
    - Validación instantánea con mensajes accesibles (`aria-describedby`), comprobación de email y celular de 9 dígitos.
    - **Campos condicionales:** Al seleccionar la modalidad *"En Equipo"*, despliega automáticamente el nombre del equipo y número de integrantes.
    - **Estados de interacción:** Focus con halo de agua marina, feedback de carga (*loading spinner*) y tarjeta de confirmación (*success state*) con pulso acuático y código único de registro (`MOL-XXXXXX`).
-5. **Cronograma Dinámico por Días ([ScheduleSection.jsx](src/sections/ScheduleSection.jsx))**:
+7. **Cronograma Dinámico por Días ([ScheduleSection.jsx](src/sections/ScheduleSection.jsx))**:
    - Navegación por pestañas (Viernes 24, Sábado 25, Domingo 26) con horarios, temáticas, badges de tipo y responsables.
-6. **Línea de Tiempo de la Dinámica ([Timeline.jsx](src/components/Timeline.jsx))**:
+8. **Línea de Tiempo de la Dinámica ([Timeline.jsx](src/components/Timeline.jsx))**:
    - 7 etapas del evento conectadas por un track oceánico continuo.
-7. **Acordeón FAQ Accesible ([Accordion.jsx](src/components/Accordion.jsx))**:
+9. **Acordeón FAQ Accesible ([Accordion.jsx](src/components/Accordion.jsx))**:
    - Preguntas frecuentes con soporte completo para teclado y atributos `aria-expanded`.
-8. **Pie de Página con Atardecer de Mollendo ([FooterSection.jsx](src/sections/FooterSection.jsx))**:
-   - Atmósfera inspirada en el atardecer costero, enlaces a redes sociales y llamado final a la acción.
+10. **Pie de Página con Atardecer de Mollendo ([FooterSection.jsx](src/sections/FooterSection.jsx))**:
+    - Atmósfera inspirada en el atardecer costero, enlaces a redes sociales y llamado final a la acción.
 
 ---
 

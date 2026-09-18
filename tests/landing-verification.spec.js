@@ -298,4 +298,99 @@ test.describe('Suite Completa de Verificación - Innovathon Mollendo 2026', () =
     }
   });
 
+  // 21. Selector y alternancia de Modo Claro / Modo Oscuro
+  test('21. Alternancia de tema Claro/Oscuro y cambio dinámico de logo', async ({ page }, testInfo) => {
+    await page.goto('/');
+    const appRoot = page.locator('.app-root');
+    await expect(appRoot).toBeVisible();
+
+    const initialTheme = await appRoot.getAttribute('data-theme');
+    expect(['dark', 'light']).toContain(initialTheme);
+
+    if (testInfo.project.name === 'brave-desktop') {
+      const themeBtn = page.locator('#theme-toggle-btn');
+      await expect(themeBtn).toBeVisible();
+
+      // Alternar tema
+      await themeBtn.click();
+      const toggledTheme = initialTheme === 'dark' ? 'light' : 'dark';
+      await expect(appRoot).toHaveAttribute('data-theme', toggledTheme);
+
+      // Verificar que el logo cambió acordemente
+      const logoImg = page.locator('.brand-logo-img');
+      const expectedLogo = toggledTheme === 'light' ? '/assets/logo-dark.png' : '/assets/logo-light.png';
+      await expect(logoImg).toHaveAttribute('src', expectedLogo);
+
+      // Volver al tema inicial
+      await themeBtn.click();
+      await expect(appRoot).toHaveAttribute('data-theme', initialTheme);
+    } else {
+      // En mobile probar el toggle en el drawer
+      const toggle = page.locator('#mobile-toggle');
+      await toggle.click();
+      const mobileThemeBtn = page.locator('.mobile-theme-btn');
+      await expect(mobileThemeBtn).toBeVisible();
+      await mobileThemeBtn.click();
+      const toggledTheme = initialTheme === 'dark' ? 'light' : 'dark';
+      await expect(appRoot).toHaveAttribute('data-theme', toggledTheme);
+    }
+  });
+
+  // 22. Sección interactiva y dinámica del Castillo Forga
+  test('22. Sección dinámica Castillo Forga con hotspots interactivos y HUD marino', async ({ page }) => {
+    await page.goto('/#castillo-forga');
+    const castilloSection = page.locator('#castillo-forga');
+    await expect(castilloSection).toBeVisible();
+
+    // Título y badges
+    await expect(page.locator('#castillo-forga .section-title')).toContainText('Castillo Forga');
+    await expect(page.locator('#castillo-forga .badge-aqua')).toContainText('Símbolo de Mollendo');
+
+    // Imagen digital
+    const visualImg = page.locator('.castillo-main-image');
+    await expect(visualImg).toBeVisible();
+
+    // Telemetría HUD marina (Marea, Agua del Pacífico, Viento del Sur)
+    const telemetryItems = page.locator('.hud-metric');
+    await expect(telemetryItems).toHaveCount(3);
+    await expect(telemetryItems.first()).toContainText('Marea');
+
+    // Hotspots de baliza interactivos sobre la imagen
+    const beacons = page.locator('.hotspot-beacon');
+    await expect(beacons).toHaveCount(3);
+
+    // Navegar tabs / hotspots
+    const tabs = page.locator('.hotspot-nav-tab');
+    await expect(tabs).toHaveCount(3);
+
+    // Click en Tab 2 (Acantilado del Pacífico)
+    await tabs.nth(1).click();
+    await expect(page.locator('.detail-title')).toContainText('Acantilado del Pacífico');
+
+    // Click en Tab 3 (Baluarte Histórico Forga)
+    await tabs.nth(2).click();
+    await expect(page.locator('.detail-title')).toContainText('Baluarte Histórico Forga');
+
+    // Click en Tab 1 (Torreón del Faro Digital)
+    await tabs.nth(0).click();
+    await expect(page.locator('.detail-title')).toContainText('Torreón del Faro Digital');
+  });
+
+  // 23. Capturas de pantalla en Modo Claro para auditoría visual
+  test('23. Generación de capturas de pantalla completas en Modo Claro', async ({ page }, testInfo) => {
+    // Inyectar tema claro antes de renderizar
+    await page.addInitScript(() => {
+      localStorage.setItem('mollethon_theme', 'light');
+    });
+    await page.goto('/');
+
+    const appRoot = page.locator('.app-root');
+    await expect(appRoot).toHaveAttribute('data-theme', 'light');
+
+    const screenshotPath = path.join(SCREENSHOTS_DIR, `${testInfo.project.name}-light-fullpage.png`);
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    expect(fs.existsSync(screenshotPath)).toBeTruthy();
+  });
+
 });
+

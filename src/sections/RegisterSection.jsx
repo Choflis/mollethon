@@ -502,7 +502,7 @@ export default function RegisterSection() {
           border-radius: var(--radius-xl);
           border-color: var(--color-border-marine);
           box-shadow: var(--shadow-lg);
-          background: #061536;
+          background: var(--color-form-bg);
         }
         .form-row {
           display: grid;
@@ -687,7 +687,7 @@ export default function RegisterSection() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          background: #06193e;
+          background: var(--color-form-bg);
         }
         .success-water-pulse {
           width: 72px;
@@ -707,7 +707,7 @@ export default function RegisterSection() {
         .success-title {
           font-size: 2rem;
           margin-bottom: 0.75rem;
-          color: #ffffff;
+          color: var(--color-text-main);
         }
         .success-greeting {
           font-size: 1.15rem;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function Navbar() {
+export default function Navbar({ theme = 'dark', toggleTheme }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef(null);
@@ -40,6 +40,7 @@ export default function Navbar() {
   const navLinks = [
     { href: '#inicio', label: 'Inicio' },
     { href: '#sobre-el-evento', label: 'La Innovathon' },
+    { href: '#castillo-forga', label: 'El Castillo' },
     { href: '#experiencias', label: 'Experiencias' },
     { href: '#dinamica', label: 'Dinámica' },
     { href: '#cronograma', label: 'Cronograma' },
@@ -51,13 +52,15 @@ export default function Navbar() {
     if (isOpen) setIsOpen(false);
   };
 
+  const logoSrc = theme === 'light' ? '/assets/logo-dark.png' : '/assets/logo-light.png';
+
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-inner">
         {/* Brand Logo */}
         <a href="#inicio" className="navbar-brand" aria-label="Innovathon Mollendo - Inicio">
           <img
-            src="/assets/logo-light.png"
+            src={logoSrc}
             alt="Logo Innovathon Mollendo"
             className="brand-logo-img"
           />
@@ -77,8 +80,38 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Action Button */}
+        {/* Action Buttons: Theme Switcher & CTA */}
         <div className="navbar-actions">
+          {/* Theme Toggle Button (Light/Dark) */}
+          <button
+            id="theme-toggle-btn"
+            type="button"
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+            title={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+          >
+            {theme === 'dark' ? (
+              /* Sun Icon for switching to light */
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="theme-icon">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            ) : (
+              /* Moon Icon for switching to dark */
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="theme-icon">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            )}
+          </button>
+
           <a href="#registro" className="btn btn-primary nav-cta">
             <span>Regístrate</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -112,7 +145,7 @@ export default function Navbar() {
       >
         <div className="mobile-drawer-header">
           <img
-            src="/assets/logo-light.png"
+            src={logoSrc}
             alt="Innovathon Mollendo"
             className="mobile-logo-img"
           />
@@ -136,6 +169,16 @@ export default function Navbar() {
         </ul>
 
         <div className="mobile-drawer-footer">
+          <div className="mobile-theme-row">
+            <span>Tema visual:</span>
+            <button
+              type="button"
+              className="btn btn-secondary mobile-theme-btn"
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? '☀️ Modo Claro' : '🌙 Modo Oscuro'}
+            </button>
+          </div>
           <a
             href="#registro"
             className="btn btn-primary btn-block"
@@ -172,7 +215,7 @@ export default function Navbar() {
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
           border-bottom-color: var(--color-border-marine);
-          box-shadow: 0 4px 20px rgba(3, 12, 31, 0.4);
+          box-shadow: 0 4px 20px rgba(3, 12, 31, 0.25);
         }
         .navbar-inner {
           display: flex;
@@ -204,7 +247,7 @@ export default function Navbar() {
         .desktop-nav {
           display: none;
         }
-        @media (min-width: 960px) {
+        @media (min-width: 1024px) {
           .desktop-nav {
             display: block;
           }
@@ -212,11 +255,11 @@ export default function Navbar() {
         .nav-list {
           display: flex;
           align-items: center;
-          gap: 1.75rem;
+          gap: 1.5rem;
           list-style: none;
         }
         .nav-link {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           font-weight: 600;
           color: var(--color-text-muted);
           position: relative;
@@ -244,8 +287,33 @@ export default function Navbar() {
         .navbar-actions {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 0.75rem;
         }
+        
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid var(--color-border);
+          color: var(--color-text-main);
+          cursor: pointer;
+          transition: background-color 180ms ease, border-color 180ms ease, transform 160ms ease, color 180ms ease;
+        }
+        .theme-toggle-btn:hover {
+          background: var(--color-aqua-subtle);
+          border-color: var(--color-aqua);
+          color: var(--color-aqua);
+          transform: rotate(15deg);
+        }
+        .theme-toggle-btn:active {
+          transform: scale(0.95);
+        }
+
         .nav-cta {
           display: none;
           padding: 0.65rem 1.35rem;
@@ -271,7 +339,7 @@ export default function Navbar() {
           color: var(--color-text-main);
           transition: background-color 160ms ease, border-color 160ms ease;
         }
-        @media (min-width: 960px) {
+        @media (min-width: 1024px) {
           .mobile-toggle-btn {
             display: none;
           }
@@ -301,7 +369,7 @@ export default function Navbar() {
           right: 0;
           bottom: 0;
           width: min(85vw, 360px);
-          background-color: #05102a;
+          background-color: var(--color-navy-surface);
           border-left: 1px solid var(--color-border-marine);
           box-shadow: -8px 0 32px rgba(3, 12, 31, 0.8);
           z-index: 1002;
@@ -343,14 +411,14 @@ export default function Navbar() {
           margin-top: 1.5rem;
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 1.15rem;
         }
         .mobile-nav-link {
-          font-size: 1.15rem;
+          font-size: 1.1rem;
           font-weight: 700;
           color: var(--color-text-main);
           display: block;
-          padding: 0.4rem 0;
+          padding: 0.35rem 0;
         }
         .mobile-nav-link:hover {
           color: var(--color-aqua);
@@ -359,13 +427,26 @@ export default function Navbar() {
           margin-top: auto;
           padding-top: 1.5rem;
           border-top: 1px solid var(--color-border);
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .mobile-theme-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 0.88rem;
+          color: var(--color-text-muted);
+        }
+        .mobile-theme-btn {
+          padding: 0.4rem 0.85rem;
+          font-size: 0.82rem;
         }
         .btn-block {
           width: 100%;
           text-align: center;
         }
         .mobile-drawer-tagline {
-          margin-top: 1rem;
           font-size: 0.85rem;
           color: var(--color-text-subtle);
           text-align: center;

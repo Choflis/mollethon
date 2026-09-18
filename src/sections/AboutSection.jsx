@@ -87,7 +87,7 @@ export default function AboutSection() {
 
       <style>{`
         .about-section {
-          background-color: #040e24;
+          background-color: var(--color-section-alt);
           border-top: 1px solid var(--color-border);
           border-bottom: 1px solid var(--color-border);
         }

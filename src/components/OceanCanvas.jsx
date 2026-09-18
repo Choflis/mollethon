@@ -37,8 +37,8 @@ export default function OceanCanvas() {
 
     let step = 0;
 
-    // Wave layers configuration
-    const waves = [
+    // Dark Mode Wave layers
+    const darkWaves = [
       {
         baseY: 0.72,
         amplitude: 24,
@@ -65,6 +65,34 @@ export default function OceanCanvas() {
       },
     ];
 
+    // Light Mode Wave layers
+    const lightWaves = [
+      {
+        baseY: 0.72,
+        amplitude: 24,
+        frequency: 0.007,
+        speed: 0.015,
+        colorStart: 'rgba(1, 142, 144, 0.25)',
+        colorEnd: 'rgba(243, 247, 252, 0.92)',
+      },
+      {
+        baseY: 0.78,
+        amplitude: 32,
+        frequency: 0.005,
+        speed: 0.011,
+        colorStart: 'rgba(94, 17, 214, 0.16)',
+        colorEnd: 'rgba(243, 247, 252, 0.96)',
+      },
+      {
+        baseY: 0.85,
+        amplitude: 20,
+        frequency: 0.009,
+        speed: 0.02,
+        colorStart: 'rgba(1, 142, 144, 0.38)',
+        colorEnd: '#f3f7fc',
+      },
+    ];
+
     const render = () => {
       // Smooth lerp mouse influence
       mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.05;
@@ -76,7 +104,10 @@ export default function OceanCanvas() {
         step += 1;
       }
 
-      waves.forEach((w, index) => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const activeWaves = isLight ? lightWaves : darkWaves;
+
+      activeWaves.forEach((w, index) => {
         ctx.beginPath();
         const yBase = height * w.baseY;
         ctx.moveTo(0, height);
@@ -86,7 +117,6 @@ export default function OceanCanvas() {
         const mouseLift = (mouseRef.current.y - 0.5) * 30;
 
         for (let x = 0; x <= width; x += 8) {
-          // Distance from mouse for localized swell effect
           const distNorm = Math.abs(x / width - mouseRef.current.x);
           const localizedSwell = Math.exp(-distNorm * 4) * 20;
 

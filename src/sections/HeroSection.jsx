@@ -79,7 +79,7 @@ export default function HeroSection() {
           padding-top: calc(var(--nav-height) + 2rem);
           padding-bottom: 5rem;
           overflow: hidden;
-          background: linear-gradient(180deg, #020712 0%, var(--color-navy) 100%);
+          background: linear-gradient(180deg, var(--color-hero-bg-top) 0%, var(--color-navy) 100%);
         }
         .hero-atmosphere {
           position: absolute;
@@ -93,14 +93,14 @@ export default function HeroSection() {
           left: 15%;
           width: 500px;
           height: 500px;
-          background: radial-gradient(circle, rgba(116, 28, 243, 0.22) 0%, rgba(116, 28, 243, 0) 70%);
+          background: radial-gradient(circle, rgba(116, 28, 243, 0.18) 0%, rgba(116, 28, 243, 0) 70%);
         }
         .hero-atmosphere-right {
           top: 30%;
           right: -10%;
           width: 600px;
           height: 600px;
-          background: radial-gradient(circle, rgba(3, 196, 197, 0.18) 0%, rgba(3, 196, 197, 0) 70%);
+          background: radial-gradient(circle, rgba(3, 196, 197, 0.15) 0%, rgba(3, 196, 197, 0) 70%);
         }
         .hero-container {
           position: relative;
@@ -128,12 +128,12 @@ export default function HeroSection() {
           font-size: clamp(2.5rem, 6.5vw, 5rem);
           line-height: 1.05;
           margin-bottom: 1.5rem;
-          color: #ffffff;
+          color: var(--color-text-main);
           letter-spacing: -0.035em;
         }
         .hero-subtitle {
           font-size: clamp(1.1rem, 2vw, 1.4rem);
-          color: #cbd5e1;
+          color: var(--color-text-muted);
           line-height: 1.5;
           margin-bottom: 2.5rem;
           max-width: 58ch;
@@ -155,7 +155,7 @@ export default function HeroSection() {
           align-items: center;
           gap: 1.75rem;
           padding-top: 2rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          border-top: 1px solid var(--color-border);
         }
         .highlight-item {
           display: flex;
@@ -178,7 +178,7 @@ export default function HeroSection() {
           display: none;
           width: 1px;
           height: 36px;
-          background: rgba(255, 255, 255, 0.12);
+          background: var(--color-border);
         }
         @media (min-width: 640px) {
           .highlight-divider {

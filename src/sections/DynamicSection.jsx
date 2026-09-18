@@ -21,7 +21,7 @@ export default function DynamicSection() {
 
       <style>{`
         .dynamic-section {
-          background-color: #040d21;
+          background-color: var(--color-section-alt);
           border-top: 1px solid var(--color-border);
           border-bottom: 1px solid var(--color-border);
         }
